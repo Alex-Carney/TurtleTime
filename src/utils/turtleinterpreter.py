@@ -1,5 +1,5 @@
 import turtle as tur
-import lsystem as ls
+import lsystem_old as ls
 
 class TurtleInterpreter:
     def __init__(self, sequence, ulen, delta, inHeading):
