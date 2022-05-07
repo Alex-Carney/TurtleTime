@@ -3,6 +3,7 @@
 Created on Thu Feb  3 15:42:41 2022
 
 @author: Gavin Burns
+@author: Alex Carney
 """
 from collections import defaultdict
 import numpy as np

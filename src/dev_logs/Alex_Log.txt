@@ -1,0 +1,52 @@
+Before Feb 28:
+    Before we signed the contract, I had written basic L-system generator code out of interest. The code handled
+    the simplest form of L strings -- Context independent deterministic strings. By the time we signed the contract,
+    this was a great start to build off of.
+
+Feb 28:
+    Since we had the contract signed, this was our first day to truly work on the project. Gavin and I worked together
+    on a strategy for how to handle Stochastic productions. In class, I worked on the idea of creating an entire
+    Production class, that stored 'bins' based on the probability of each successor. Then, when the production is
+    applied during the iterations of building an L-string, a random number between 0 and 1 is generated and placed into
+    one of the pre-determined bins, which dictates what successor is applied.
+
+    I helped with the design of the Production class, and wrote some initial implementation. Gavin was in charge of
+    completing the Production class, and its implementation while building L-strings (generating the random number
+    and determining what production to apply during run-time)
+
+March 3:
+    March 3 we had a team meeting to talk about each person's individual requirements and where we were at in the
+    project. I also set up GitHub, and created accounts for Gavin and Vinny. Additionally, I helped both of them
+    install Pycharm and clone the project. Now, the project is stored in a central place for the three of us,
+    and we can push/pull changes to the codebase remotely.
+
+May 4:
+    I used the turtle time code to generate fractals for my final exam for Ma331 dynamical systems. This was a good
+    opportunity to get myself back into the project and make sure everything was working (and documented) properly.
+    Vinny and I had a discussion about what still had to be done before the project could be submitted.
+
+May 6:
+    I took a shot at developing tree-context-dependent systems. Reading over the book again, I realized this is a much
+    more difficult problem than I originally anticipated. Additionally, I realized that data structures and algorithms
+    are much different in Python, without any sense of proper object oriented programming. After a few hours of playing
+    around with simple binary tree recursive formulas, I looked online for a solution.
+
+    After researching for a while, I couldn't find any code implementations or hints about how to detect context in
+    trees. The closest example I could find is someone saying that it required "backtracking over stacks".
+
+    Backtracking is a computer science technique for solving dynamic programming problems, where all possible solutions
+    to a problem are generated, and procedurally thrown out if they fail a constraint (rat in a maze problem). I spent a
+    few hours getting a bracket -> tree algorithm working for binary trees, along with a way to print them.
+
+    I then realized that our trees would almost never be binary, and scrapped the code I wrote. At this point it was
+    getting late and I decided the best approach would be to devise an algorithm for how I would detect context
+    dependence, and write it in a report. I figured that since context dependent trees were listed under optional
+    proficiencies, that this would be sufficient work, and I could return to this problem over the summer as part of
+    preparation for coding interviews.
+
+May 7:
+    The key to my solution is that the string representation of the tree is not the way to find context dependence.
+    Instead, the string is converted to a special type of graph, and that is used instead to look for left and right
+    context.
+
+    I started writing the report. More details about the problems I faced and my solution is in that paper.

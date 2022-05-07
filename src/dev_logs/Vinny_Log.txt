@@ -1,0 +1,54 @@
+Before Feb 28
+    Before we signed the contract, the turtle interpreter evolved from an initial build using matplotlib, to a build
+    using actual turtle graphics. By the time we signed the contract, the turtle interpreter build was extremely rough
+    with hard coded parameters. Most of the time spent working on the interpreter under contract was just refining the
+    program using OOB.
+
+
+
+Feb 28
+    Today is the first day working on the project under contract, so it's also the first day using the log for real.
+    Today I went back through the interpreter and re-implemented it as its own object, which makes the program easier to
+    deal with and allows us to generate drawings with more custom options. I added a main method, and gave the interpreter the following parameters:
+
+        self.sequence = sequence
+        self.unit_length = unit_length
+        self.delta = delta
+        self.initial_heading = initial_heading
+
+        self.pen_size = pen_size
+        self.pen_color = pen_color
+        self.background_color = background_color
+
+    The first four parameters are the essentials to generate a drawing, the last three are more for quality of life.
+    Next time I need to implement "key bindings" for the interpreter, since not every L-System uses the same characters
+    for each command.
+
+
+
+March 3
+    Today I added support that allows the user to specify how the turtle interprets each character in a sequence. I added the traits:
+
+        self.forwards_draw_keys = forwards_draw_keys
+        self.forwards_jump_keys = forwards_jump_keys
+        self.left_keys = left_keys
+        self.right_keys = right_keys
+        self.save_keys = save_keys
+        self.load_keys = load_keys
+
+    All of these can be implemented as lists, which means you can bind many characters to the same command. This came to
+    mind because of the binary tree L-System. When generating that sequence, the L-System program has to treat 0 and 1
+    differently for each iteration, although the interpreter interprets both 0 and 1 as move forward, so there seemed to
+    be a need to add key-binding for more complicated sequences. I also had to implement a quick linear search function
+    to check each character list for certain characters, which would allow the interpreter to open a list and say "if
+    this list contains a character from the move forwards keys, move forwards." I ran into problems a few times where
+    the code would compile but wouldn't generate the drawing correctly, mainly because I forgot to change old logic
+    statements to statements supporting the key-binding dictionaries.
+
+
+
+May 4
+    Today I opened up the program after a long off-period and added the option for animation control. Originally I had
+    it disabled, since the maximum animation speed is rather slow, but I realized it would be better to let the user
+    enable animation if they wished. The compromise was just to add an animation toggle and set it to False (off) by
+    default.
