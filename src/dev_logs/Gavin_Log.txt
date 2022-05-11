@@ -1,0 +1,76 @@
+
+Feb 28
+    First day working on the project!! I spent the time editing the L-System generator that Alex and I made in class.
+    I also created a production class. The plan is that this class will be passed an array including the “parent” character and a
+    “child” character and will generate a dictionary for the parent -> child. This dictionary will then be called whenever the “parent” is detected in the L-System Generator.
+    I finished with a simple working production class and L-System generator that uses it. Works for simple examples such as the Fibonacci sequence.
+
+
+
+March 5
+    I worked on production class some more today. Today I began introducing a way to incorporates stochastic grammars into the system.
+    I’ll be using a bin system where, for every child, there will be an included “child chance”.
+    This chance will increment the number of bins by one and keep track of the percent of the child being produced.
+
+    The dictionary now being created in the production class map the bin numbers onto the child names and the plan is whenever the
+    L-System generator identifies the parent, it will generate a random number between 0-1 and call the correct bin which associates
+    the random number to the correct child. It is currently still incomplete.
+
+
+
+March 7
+    Today I worked on finishing up the production class’ stochastic grammar function.
+     It now successfully generates dictionaries for each bin to each child’s chance of production.
+     Likewise, in the L-System generator, I am using the np.digitize function to associate the randomly generated number to the bins.
+
+    I’ve also began running some tests on using the new functionality.
+    I works as initially intended but I need to work on some user problems.
+    Such as if they may exceed the total children chance by 100%, or if they don’t add up to 100% at all
+
+
+
+
+March 14
+    The first thing I did today was finish up completely finish up the stochastic function of the production class.
+    I’ve fixed some issues and ran some tests. I’ve decided that having a total child chance >100% is a user issue as they should understand how impossible that is.
+
+    I’ve also begun work on the context-dependent part of the project. As a part of the production class,
+    the user will now pass it precontext and postcotext characters as a parameter. Then each dictionary created for the children will have an associated parent and context that need to be checked before they are called.
+
+    The current state of the context-dependent ability is that the pre and post contexts of the procedure are being called correctly.
+    They also check the correct number of letters before and after the desired letter in the L-System string.
+    But there are some problems where the letter their checking is in position 2 and the precontext is 3 letters;
+    so when checking the precontext, it will check from (-1:1) and check the last letter of the L-system string.
+    This is an easy fix, but one that I’ll do tomorrow
+
+
+
+
+March 16
+    I’ve fixed the context-dependent ability and I’ve begun test benching its capabilities.
+    Everything seems to be great and I’ve also fixed some other issues I’ve found with code as well as cleaned it up a bit.
+    I made the some changes on how procedures are entered into the production class and how the system will interact with the LSystem class
+    (Hopefully it makes it easier to use). I’ve also added some simple examples on using the program.
+
+    The last thing I need to work on is adding multiple context-dependent criteria for each letter in the L-system’s alphabet.
+    Say the alphabet is {a, b, c} and for the letter a you want one procedure to be: c < a > bc -> abc.
+    Thats perfect and it works great in the system. But if you wanted to add another procedure for a: bc < a > bba -> cba.
+    Then this won’t work because each letter can only have one set of contexts (but a near infinite amount of children).
+    This will be the last thing I need to do, and then everything should be jolly good.
+
+
+May 6
+    It’s been quite a while since I looked at the code so the first thing I did was refamiliarize myself with it again.
+    I’m glad I commented on most of the functionality and included those simple examples :)
+
+    Today I completed the context-dependent utility of the program.
+    I just made some more adjustments how the System class runs. Instead of looping through the alphabet of the L_ssytm,
+    it loops through all of the procedures that were generated. This does make the alphabet and obsolete parameter
+    in the System Class but I’ll keep it in so the user can check the alphabet if need be.
+
+
+
+
+
+
+
