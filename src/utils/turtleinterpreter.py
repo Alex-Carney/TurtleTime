@@ -175,21 +175,27 @@ class TurtleInterpreter:
 def main():
 
     # Set the rules for generating a custom sequence (see L-system program)
-    custom_dictionary = {
-        "X": '0[+X[---X]]0[---X]+X',
-        "0": '00',
-        "[": "[",
-        "]": "]",
-        "+": "+",
-        "-": "-"
-    }
+
+    productions = [
+        ['X', ['', ''], [["0[+X[---X]]0[---X]+X", 1]]],
+        ['0', ['', ''], [["00", 1]]],
+        ['[', ['', ''], [["[", 1]]],
+        [']', ['', ''], [["]", 1]]],
+        ['+', ['', ''], [["+", 1]]],
+        ['-', ['', ''], [["-", 1]]],
+
+
+    ]
 
     # Establish the LSystem using Alex's method
-    custom_system = ls.LSystem(['X', 'F'], 'X', custom_dictionary)
-    custom_system_string = custom_system.l_string(7)
+    custom_system = ls.LSystem(['X', 'F'], 'X', productions)
+    custom_system_string = custom_system.l_string(6)
+
+    print("custom system string")
+    print(custom_system_string)
 
     # Instantiate the interpreter and draw the result. This was a tree I designed myself.
-    tree = TurtleInterpreter(custom_system_string[6], 15, forwards_draw_keys=["0", "1"])
+    tree = TurtleInterpreter(custom_system_string, 15, forwards_draw_keys=["0", "1"], unit_length=3)
     tree.draw()
 
 if __name__ == '__main__':
