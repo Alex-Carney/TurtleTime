@@ -174,29 +174,46 @@ class TurtleInterpreter:
 
 def main():
 
-    # Set the rules for generating a custom sequence (see L-system program)
 
-    productions = [
+    ##################################################
+    # EXAMPLE 1: COOL LOOKING TREE DESIGNED BY VINNY #
+    ##################################################
+
+    # Set the rules for generating a custom sequence (see L-system program)
+    tree_productions = [
         ['X', ['', ''], [["0[+X[---X]]0[---X]+X", 1]]],
         ['0', ['', ''], [["00", 1]]],
         ['[', ['', ''], [["[", 1]]],
         [']', ['', ''], [["]", 1]]],
         ['+', ['', ''], [["+", 1]]],
         ['-', ['', ''], [["-", 1]]],
-
-
     ]
-
     # Establish the LSystem using Alex's method
-    custom_system = ls.LSystem(['X', 'F'], 'X', productions)
+    custom_system = ls.LSystem(['X', 'F'], 'X', tree_productions)
     custom_system_string = custom_system.l_string(6)
-
-    print("custom system string")
-    print(custom_system_string)
-
     # Instantiate the interpreter and draw the result. This was a tree I designed myself.
     tree = TurtleInterpreter(custom_system_string, 15, forwards_draw_keys=["0", "1"], unit_length=3)
     tree.draw()
+
+    ##################################################
+    # EXAMPLE 2: KOCH SNOWFLAKE                      #
+    ##################################################
+
+    # # Production list
+    # koch_productions = [
+    #     ['F', ['', ''], [["F-F++F-F", 1]]],
+    #     ['+', ['', ''], [["+", 1]]],
+    #     ['-', ['', ''], [["-", 1]]],
+    # ]
+    # # Establish the LSystem using Alex's method
+    # custom_system = ls.LSystem([], 'F++F++F', koch_productions)
+    # custom_system_string = custom_system.l_string(4)
+    # # Instantiate the interpreter and draw the result. This was a tree I designed myself.
+    # tree = TurtleInterpreter(custom_system_string, 60, unit_length=1, initial_heading=0)
+    # tree.draw()
+
+
+
 
 if __name__ == '__main__':
     main()
